@@ -1,0 +1,271 @@
+﻿
+@model Dental_Care.Models.User
+
+@using Dental_Care.Helpers
+@using System.Globalization
+
+@{
+    ViewBag.Title = "Profil";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h1 class="h2">@ViewBag.Title</h1>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Utilisateur</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+<!-- Intro Section -->
+
+<section class="@(UserHelper.isDentist() ? "pt-100" : "ptb-100")">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+            </div>
+            <!-- Details -->
+            <div class="@(UserHelper.isDentist() ? "col-sm-6 col-sm-offset-3" : "col-sm-6")">
+                <div class="box-resume">
+                    <div class="center-top"> <i class="fa fa-user fa-5x"></i> </div>
+                    <ul class="user-info">
+                        <li><strong>@Html.DisplayNameFor(model => model.Username)</strong> @Model.Username</li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Email)</strong> <a href="mailto:@Model.Email" title="" class="a-email">@Model.Email</a></li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Tel)</strong> @(!String.IsNullOrEmpty(Model.Tel) ? Model.Tel : "-")</li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Address)</strong> @(!String.IsNullOrEmpty(Model.Address) ? Model.Address : "-")</li>
+                        @if (UserHelper.isAdmin())
+                        {
+                            <li><strong>@Html.DisplayNameFor(model => model.isAdmin)</strong> @(Model.isAdmin ? "Oui" : "Non")</li>
+                            <li><strong>@Html.DisplayNameFor(model => model.isDentist)</strong> @(Model.isDentist ? "Oui" : "Non")</li>
+                        }
+                    </ul>
+                    <div class="center-bottom"> <a href="@Url.Action("Edit", "User", new { id = Model.Id })" class="btn btn-md btn-color-line ">Modifier</a> </div>
+                </div>
+            </div>
+            @if (!UserHelper.isDentist())
+            {
+                <div class="col-sm-6">
+                    <!-- Rendez-vous -->
+                    <div>
+                        <div class="center-top" id="center-top-table"> <i class="fa fa-calendar fa-5x"></i> </div>
+                        <table class="blue-table table-striped">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">
+                                        Mes rendez-vous
+                                    </th>
+                                    <th class="th-button">
+                                        <a href="@Url.Action("Create", "Rdv")" title="Nouveau Rendez-vous"> <i class="fa fa-calendar-plus-o button alterar"></i> </a>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th> # </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Rdvs.First().Ref)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Rdvs.First().Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Rdvs.First().Date)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int i = 0;}
+                                @foreach (var item in Model.Rdvs)
+                                {
+                                    i++;
+                                    <tr>
+                                        <td>
+                                            @i
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Ref)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Date)
+                                        </td>
+                                        <td>
+                                            @if (item.State == RdvState.Canceled)
+                                            {
+                                                <span class="tag label label-danger">@RdvState.Label[item.State]</span>
+                                            }
+                                            else if (item.State == RdvState.Confirmed)
+                                            {
+                                                <a href="@Url.Action("Details", "Rdv", new { id = item.Id })" title="Détails"> <i class="fa fa-calendar-o button alterar"></i> </a>
+                                                <span class="tag label label-success">@RdvState.Label[item.State]</span>
+                                            }
+                                            else if (item.State == RdvState.Closed)
+                                            {
+                                                <span class="tag label label-default">@RdvState.Label[item.State]</span>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("Details", "Rdv", new { id = item.Id })" title="Détails"> <i class="fa fa-calendar-o button alterar"></i> </a>
+                                                <a href="@Url.Action("Cancel", "Rdv", new { id = item.Id })" title="Annuler"> <i class="fa fa-calendar-times-o button excluir"></i> </a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                                @if (i == 0)
+                                {
+                                    <tr>
+                                        <td colspan="4">Vous n'avez pas encore de rendez-vous.</td>
+                                        <td></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <!-- Consultation -->
+                    <div>
+                        <div class="center-top" id="center-top-table"> <i class="fa fa-book fa-5x"></i> </div>
+                        <table class="blue-table table-striped">
+                            <thead>
+                                <tr>
+                                    <th colspan="5">
+                                        Mes consultations
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th> # </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PatientForms.First().Consultations.First().Ref)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PatientForms.First().Consultations.First().Date)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PatientForms.First().Consultations.First().PatientFormId)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{i = 0;}
+                                @foreach (var pf in Model.PatientForms)
+                                {
+                                    foreach (var item in pf.Consultations)
+                                    {
+                                        i++;
+                                        <tr>
+                                            <td>
+                                                @i
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Ref)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Date)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PatientForm.Name)
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("Details", "Consultation", new { id = item.Id })" title="Détails"> <i class="fa fa-list-ul button alterar"></i> </a>
+                                                <a href="@Url.Action("Details", "PatientForm", new { id = item.PatientFormId })" title="Fiche patient"> <i class="fa fa-file-text button alterar"></i> </a>
+                                                @if (item.Ordonances.Count > 0)
+                                                {
+                                                    <a href="@Url.Action("Details", "Ordonance", new { id = item.Ordonances.First().Id })" title="Ordonance"> <i class="fa fa-clipboard button alterar"></i> </a>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                @if (i == 0)
+                                {
+                                    <tr>
+                                        <td colspan="4">Vous n'avez pas encore de consultation.</td>
+                                        <td></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <!-- Facture -->
+                    <div>
+                        <div class="center-top" id="center-top-table"> <i class="fa fa-credit-card fa-5x"></i> </div>
+                        <table class="blue-table table-striped">
+                            <thead>
+                                <tr>
+                                    <th colspan="5">
+                                        Mes factures
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th> # </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PatientForms.First().Consultations.First().Factures.First().Ref)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PatientForms.First().Consultations.First().Factures.First().Date)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PatientForms.First().Consultations.First().Factures.First().Montant)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{i = 0; double total = 0;}
+                                @foreach (var pf in Model.PatientForms)
+                                {
+                                    foreach (var csl in pf.Consultations)
+                                    {
+                                        foreach (var item in csl.Factures)
+                                        {
+                                            i++;
+                                            total += item.Montant;
+                                            <tr>
+                                                <td>
+                                                    @i
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Ref)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Date)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Montant)
+                                                </td>
+                                                <td>
+                                                    <a href="@Url.Action("Details", "Facture", new { id = item.Id })" title="Détails"> <i class="fa fa-list-ul button alterar"></i> </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                                @if (i == 0)
+                                {
+                                    <tr>
+                                        <td colspan="4">Vous n'avez pas encore de facture.</td>
+                                        <td></td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="3">Total</td>
+                                        <td>@total @CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol</td>
+                                        <td></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- Section -->
+

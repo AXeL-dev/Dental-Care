@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Dental_Care.Models.Contact>
+
+@{
+    ViewBag.Title = "Liste";
+    ViewBag.LongTitle = "Liste des Contacts";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h1 class="h2">@ViewBag.Title</h1>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Contact</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+<!-- Intro Section -->
+
+<div class="ptb ptb-100" id="Pricing">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+                <table class="blue-table table-striped apply-datatable">
+                    <thead>
+                        <tr>
+                            <th colspan="6">
+                                @ViewBag.LongTitle
+                            </th>
+                        </tr>
+                        <tr>
+                            <th> # </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Subject)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Date)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int i = 0;}
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <td>
+                                    @i
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Subject)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Details", new { id = item.Id })" title="Détails"> <i class="fa fa-list-ul button alterar"></i> </a>
+                                    <a href="@Url.Action("Delete", new { id = item.Id })" title="Supprimer"> <i class="fa fa-trash button excluir"></i> </a>
+                                </td>
+                            </tr>
+                        }
+                        @if (i == 0)
+                        {
+                            <tr>
+                                <td colspan="5">@i Contacts.</td>
+                                <td></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

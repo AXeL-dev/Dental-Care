@@ -1,0 +1,48 @@
+﻿@model Dental_Care.Models.User
+
+@using Dental_Care.Helpers
+
+@{
+    ViewBag.Title = "Suppression";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h1 class="h2">@ViewBag.Title</h1>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Utilisateur</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+<!-- Intro Section -->
+
+<section class="pt-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+                <div class="box-resume">
+                    <div class="center-top"> <i class="fa fa-user fa-5x"></i> </div>
+                    <p class="lead c">Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>
+                    <br>
+                    <ul class="user-info">
+                        <li><strong>@Html.DisplayNameFor(model => model.Username)</strong> @Model.Username</li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Email)</strong> <a href="mailto:@Model.Email" title="" class="a-email">@Model.Email</a></li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Tel)</strong> @(!String.IsNullOrEmpty(Model.Tel) ? Model.Tel : "-")</li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Address)</strong> @(!String.IsNullOrEmpty(Model.Address) ? Model.Address : "-")</li>
+                        @if (UserHelper.isAdmin())
+                        {
+                            <li><strong>@Html.DisplayNameFor(model => model.isAdmin)</strong> @(Model.isAdmin ? "Oui" : "Non")</li>
+                            <li><strong>@Html.DisplayNameFor(model => model.isDentist)</strong> @(Model.isDentist ? "Oui" : "Non")</li>
+                        }
+                    </ul>
+                    <form class="center-bottom" action="@Url.Action("Delete", "User")" method="post">
+                        <a href="@Url.Action("Index", "User")" class="btn btn-md btn-color-line ">Annuler</a> &nbsp;&nbsp;&nbsp; <input type="submit" value="Supprimer" class="btn btn-md btn-color-line">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section -->

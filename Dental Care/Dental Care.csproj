@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4F3F24DC-4F77-4A62-8CCF-8C4478C03EB9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dental_Care</RootNamespace>
+    <AssemblyName>Dental Care</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\bootstrap\bootstrap.css" />
+    <Content Include="css\bootstrap\bootstrap.min.css" />
+    <Content Include="css\jquery.dataTables.min.css" />
+    <Content Include="css\dentist.css" />
+    <Content Include="css\jquery-ui.css" />
+    <Content Include="css\layers.css" />
+    <Content Include="css\raleway-font.css" />
+    <Content Include="css\responsive.css" />
+    <Content Include="css\settings.css" />
+    <Content Include="css\style.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\theme-color\default.css" />
+    <Content Include="fonts\dentist\file.svg" />
+    <Content Include="fonts\flaticon\Flaticon.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\revicons\revicons.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="images\about\img1.jpg" />
+    <Content Include="images\about\img2.jpg" />
+    <Content Include="images\about\img3.jpg" />
+    <Content Include="images\favicon.ico" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\map.png" />
+    <Content Include="images\rdv.png" />
+    <Content Include="images\slide\slide-1.jpg" />
+    <Content Include="images\slide\slide-2.jpg" />
+    <Content Include="images\slide\slide-3.jpg" />
+    <Content Include="images\sub-page-banner.jpg" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="css\fullcalendar\fullcalendar.min.css" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\fullcalendar\fullcalendar.min.js" />
+    <Content Include="css\fullcalendar\fullcalendar.print.css" />
+    <Content Include="Scripts\fullcalendar\lang-all.js" />
+    <Content Include="Scripts\fullcalendar\moment.min.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\revolution\jquery.revolution.js" />
+    <Content Include="Scripts\revolution\jquery.themepunch.revolution.min.js" />
+    <Content Include="Scripts\revolution\jquery.themepunch.tools.min.js" />
+    <Content Include="Scripts\revolution\extensions\revolution.extension.layeranimation.min.js" />
+    <Content Include="Scripts\revolution\extensions\revolution.extension.navigation.min.js" />
+    <Content Include="Scripts\revolution\extensions\revolution.extension.parallax.min.js" />
+    <Content Include="Scripts\revolution\extensions\revolution.extension.slideanims.min.js" />
+    <Content Include="Scripts\validation.js" />
+    <Content Include="Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\ConsultationController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\FactureController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdonanceController.cs" />
+    <Compile Include="Controllers\PatientFormController.cs" />
+    <Compile Include="Controllers\RdvController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Helpers\RdvHelper.cs" />
+    <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Consultation.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\DentalCareDbContext.cs" />
+    <Compile Include="Models\Dents.cs" />
+    <Compile Include="Models\Facture.cs" />
+    <Compile Include="Models\Ordonance.cs" />
+    <Compile Include="Models\PatientForm.cs" />
+    <Compile Include="Models\Rdv.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="fonts\revicons\revicons.eot" />
+    <Content Include="fonts\revicons\revicons.ttf" />
+    <Content Include="fonts\revicons\revicons.woff" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="fonts\flaticon\Flaticon.eot" />
+    <Content Include="fonts\flaticon\Flaticon.ttf" />
+    <Content Include="fonts\flaticon\Flaticon.woff" />
+    <Content Include="fonts\dentist\file.eot" />
+    <Content Include="fonts\dentist\file.ttf" />
+    <Content Include="fonts\dentist\file.woff" />
+    <Content Include="Views\Rdv\Create.cshtml" />
+    <Content Include="fonts\raleway\raleway-black.woff2" />
+    <Content Include="fonts\raleway\raleway-bold.woff2" />
+    <Content Include="fonts\raleway\raleway-extrabold.woff2" />
+    <Content Include="fonts\raleway\raleway-extralight.woff2" />
+    <Content Include="fonts\raleway\raleway-light.woff2" />
+    <Content Include="fonts\raleway\raleway-medium.woff2" />
+    <Content Include="fonts\raleway\raleway-regular.woff2" />
+    <Content Include="fonts\raleway\raleway-semibold.woff2" />
+    <Content Include="fonts\raleway\raleway-thin.woff2" />
+    <Content Include="Views\Shared\_ErrorSuccessMsg.cshtml" />
+    <Content Include="Views\User\Profil.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\Rdv\Index.cshtml" />
+    <Content Include="Views\Rdv\Details.cshtml" />
+    <Content Include="Views\Rdv\Edit.cshtml" />
+    <Content Include="Views\Rdv\Delete.cshtml" />
+    <Content Include="Views\Rdv\Cancel.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Contact\Details.cshtml" />
+    <Content Include="Views\Contact\Delete.cshtml" />
+    <Content Include="Views\Rdv\Confirm.cshtml" />
+    <Content Include="Views\Rdv\Close.cshtml" />
+    <Content Include="Views\PatientForm\Index.cshtml" />
+    <Content Include="Views\PatientForm\Create.cshtml" />
+    <Content Include="Views\PatientForm\Edit.cshtml" />
+    <Content Include="Views\PatientForm\Details.cshtml" />
+    <Content Include="Views\PatientForm\Delete.cshtml" />
+    <Content Include="Views\Consultation\Index.cshtml" />
+    <Content Include="Views\Consultation\Create.cshtml" />
+    <Content Include="Views\Consultation\Edit.cshtml" />
+    <Content Include="Views\Consultation\Details.cshtml" />
+    <Content Include="Views\Consultation\Delete.cshtml" />
+    <Content Include="Views\Ordonance\Index.cshtml" />
+    <Content Include="Views\Ordonance\Create.cshtml" />
+    <Content Include="Views\Ordonance\Edit.cshtml" />
+    <Content Include="Views\Ordonance\Details.cshtml" />
+    <Content Include="Views\Ordonance\Delete.cshtml" />
+    <Content Include="Views\Facture\Index.cshtml" />
+    <Content Include="Views\Facture\Create.cshtml" />
+    <Content Include="Views\Facture\Edit.cshtml" />
+    <Content Include="Views\Facture\Details.cshtml" />
+    <Content Include="Views\Facture\Delete.cshtml" />
+    <Content Include="Views\Calendar\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1846</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1846/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

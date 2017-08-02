@@ -1,0 +1,57 @@
+﻿
+@if (ViewBag.Error != null)
+{
+        <!-- ERROR MESSAGE -->
+        <div id="success" style="display: block;">
+        <div role="alert" class="alert alert-danger"> <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> @Html.Raw(ViewBag.Error) </div>
+        <input type="hidden" value="@ViewBag.ErrorDetails" />
+        </div>
+        <!-- ERROR MESSAGE -->
+}
+else if (ViewBag.Warning != null)
+{
+        <!-- WARNING MESSAGE -->
+        <div id="success" style="display: block;">
+            <div role="alert" class="alert alert-warning"> <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> @Html.Raw(ViewBag.Warning) </div>
+        </div>
+        <!-- WARNING MESSAGE -->
+}
+else if (ViewBag.Message != null)
+{
+        <!-- SUCCESS MESSAGE -->
+        <div id="success" style="display: block;">
+            <div role="alert" class="alert alert-success"> <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> @Html.Raw(ViewBag.Message) </div>
+        </div>
+        <!-- SUCCESS MESSAGE -->
+}
+
+@* else if we have a session message *@
+
+else if (Session["Error"] != null)
+{
+        <!-- SESSION ERROR MESSAGE -->
+        <div id="success" style="display: block;">
+            <div role="alert" class="alert alert-danger"> <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> @Html.Raw(Session["Error"]) </div>
+        </div>
+        <!-- SESSION ERROR MESSAGE -->
+        Session["Error"] = null;
+}
+else if (Session["Warning"] != null) // 
+{
+        <!-- SESSION WARNING MESSAGE -->
+        <div id="success" style="display: block;">
+            <div role="alert" class="alert alert-warning"> <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> @Html.Raw(Session["Warning"]) </div>
+        </div>
+        <!-- SESSION WARNING MESSAGE -->
+        Session["Warning"] = null;
+}
+else if (Session["Message"] != null) // if we have a session message
+{
+        <!-- SESSION SUCCESS MESSAGE -->
+        <div id="success" style="display: block;">
+            <div role="alert" class="alert alert-success"> <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> @Html.Raw(Session["Message"]) </div>
+        </div>
+        <!-- SESSION SUCCESS MESSAGE -->
+        Session["Message"] = null;
+}
+

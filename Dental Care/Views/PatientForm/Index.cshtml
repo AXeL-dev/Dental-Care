@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Dental_Care.Models.PatientForm>
+
+@{
+    ViewBag.Title = "Liste";
+    ViewBag.LongTitle = "Fiches Patients";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h1 class="h2">@ViewBag.Title</h1>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Fiche Patient</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+<!-- Intro Section -->
+
+<div class="ptb ptb-100" id="Pricing">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+                <table class="blue-table table-striped apply-datatable">
+                    <thead>
+                        <tr>
+                            <th colspan="7">
+                                @ViewBag.LongTitle
+                            </th>
+                            <th class="th-button">
+                                <a href="@Url.Action("Create")" title="Nouvelle fiche"> <i class="fa fa-file button alterar"></i> </a>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th> # </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Sexe)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Age)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tel)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreationDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserId)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int i = 0;}
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <td>
+                                    @i
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @(item.Sexe == "M" ? "Male" : "Femelle")
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tel)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreationDate)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Profil", "User", new { id = item.User.Id })" title="Profil">
+                                        @Html.DisplayFor(modelItem => item.User.Username)
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Create", "Consultation", new { patientFormId = item.Id })" title="Nouvelle consultation"> <i class="fa fa-book button alterar"></i> </a>
+                                    <a href="@Url.Action("Index", "Consultation", new { patientFormId = item.Id })" title="Anciennes consultations"> <i class="fa fa-bookmark button alterar"></i> </a>
+                                    <a href="@Url.Action("Edit", new { id = item.Id })" title="Modifier"> <i class="fa fa-pencil button alterar"></i> </a>
+                                    <a href="@Url.Action("Details", new { id = item.Id })" title="Détails"> <i class="fa fa-list-ul button alterar"></i> </a>
+                                    <a href="@Url.Action("Delete", new { id = item.Id })" title="Supprimer"> <i class="fa fa-trash button excluir"></i> </a>
+                                </td>
+                            </tr>
+                        }
+                        @if (i == 0)
+                        {
+                            <tr>
+                                <td colspan="7">@i Fiches.</td>
+                                <td></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

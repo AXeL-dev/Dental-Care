@@ -1,0 +1,49 @@
+﻿@model Dental_Care.Models.Facture
+
+@using System.Globalization
+
+@{
+    ViewBag.Title = "Modification";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h1 class="h2">@ViewBag.Title</h1>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Facture</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Intro Section -->
+<div class="container contact-form ptb-80">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+        </div>
+        <div class="col-sm-12">
+            <h4>Facture</h4>
+            <p>@Model.Ref</p>
+            <!-- FORM -->
+            <form class="contact-form mt-45" id="contact" action="@Url.Action("Edit")" method="post">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-field">
+                            <input class="input-sm form-full datepicker" type="text" name="@Html.NameFor(model => model.Date)" value="@Html.DisplayFor(model => model.Date)" placeholder="@Html.DisplayNameFor(model => model.Date)" id="date">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                        </div>
+                        <div class="form-field input-group" id="montant">
+                            <input class="input-sm form-full" type="text" name="@Html.NameFor(model => model.Montant)" value="@Model.Montant" placeholder="@Html.DisplayNameFor(model => model.Montant)" id="message">
+                            <span class="input-group-addon">@CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 mt-30">
+                        <button class="btn btn-md btn-color-line" type="submit" id="submit">Modifier</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM -->
+        </div>
+    </div>
+</div>

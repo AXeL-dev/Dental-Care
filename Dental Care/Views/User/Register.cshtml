@@ -1,0 +1,79 @@
+﻿
+@model Dental_Care.Models.User
+
+@{
+    ViewBag.Title = "Inscription";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h2 class="h2">@ViewBag.Title</h2>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Intro Section -->
+<!-- Register Section -->
+<div id="Pricing" class="ptb ptb-sm-80 page-signin">
+    <div class="container">
+        <div class="row">
+            <div class="main-body">
+                <div class="body-inner">
+                    @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+                    <form class="card bg-white" action="@Url.Action("Register", "User")" method="post">
+                        <div class="card-content">
+                            <section class="logo text-center">
+                                <h2>@ViewBag.Title</h2>
+                            </section>
+                            <div class="form-horizontal ng-pristine ng-valid">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <div class="ui-input-group">
+                                            <input type="text" name="@Html.NameFor(model => model.Username)" value="@Request.Form["username"]" required class="form-control form-text-pwd-input">
+                                            <span class="input-bar"></span>
+                                            <label>Nom d'utilisateur</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="ui-input-group">
+                                            <input type="text" name="@Html.NameFor(model => model.Email)" id="email" value="@Request.Form["email"]" required class="form-control form-text-pwd-input">
+                                            <span class="input-bar"></span>
+                                            <label>Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="ui-input-group">
+                                            <input type="password" name="@Html.NameFor(model => model.Pwd)" id="pwd" required class="form-control form-text-pwd-input">
+                                            <span class="input-bar"></span>
+                                            <label>Mot de passe </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="ui-input-group">
+                                            <input type="password" name="confirm_@Html.NameFor(model => model.Pwd)" id="pwd_confirm" required class="form-control form-text-pwd-input">
+                                            <span class="input-bar"></span>
+                                            <label>Confirmation du mot de passe </label>
+                                        </div>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="form-group checkbox-field">
+                                        <label for="check_box" class="text-small">
+                                            <input type="checkbox" name="privacy_ok" id="check_box" checked="checked">
+                                            <span class="custom-check"></span> En vous inscrivant, vous acceptez nos <a href="javascript:;"><i>termes</i></a> et notre <a href="javascript:;"><i>politique de confidentialité</i></a>
+                                        </label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="card-action no-border text-right"> <a href="@Url.Action("Login", "User")">Connexion</a> <input type="submit" id="check-fields" value="Inscription" class="color-primary"> </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Register Section -->
+

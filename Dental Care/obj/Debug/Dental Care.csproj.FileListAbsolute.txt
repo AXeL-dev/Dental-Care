@@ -1,0 +1,22 @@
+E:\Dental Care\Dental Care\bin\Dental Care.dll.config
+E:\Dental Care\Dental Care\bin\Dental Care.dll
+E:\Dental Care\Dental Care\bin\Dental Care.pdb
+E:\Dental Care\Dental Care\bin\EntityFramework.dll
+E:\Dental Care\Dental Care\bin\EntityFramework.SqlServer.dll
+E:\Dental Care\Dental Care\bin\System.Web.Helpers.dll
+E:\Dental Care\Dental Care\bin\System.Web.Mvc.dll
+E:\Dental Care\Dental Care\bin\System.Web.Razor.dll
+E:\Dental Care\Dental Care\bin\System.Web.Webpages.Deployment.dll
+E:\Dental Care\Dental Care\bin\System.Web.Webpages.dll
+E:\Dental Care\Dental Care\bin\System.Web.Webpages.Razor.dll
+E:\Dental Care\Dental Care\bin\EntityFramework.xml
+E:\Dental Care\Dental Care\bin\EntityFramework.SqlServer.xml
+E:\Dental Care\Dental Care\bin\System.Web.Razor.xml
+E:\Dental Care\Dental Care\bin\System.Web.Webpages.xml
+E:\Dental Care\Dental Care\bin\System.Web.Webpages.Deployment.xml
+E:\Dental Care\Dental Care\bin\System.Web.Webpages.Razor.xml
+E:\Dental Care\Dental Care\bin\System.Web.Helpers.xml
+E:\Dental Care\Dental Care\bin\System.Web.Mvc.xml
+E:\Dental Care\Dental Care\obj\Debug\Dental Care.dll
+E:\Dental Care\Dental Care\obj\Debug\Dental Care.pdb
+E:\Dental Care\Dental Care\obj\Debug\Dental Care.csprojResolveAssemblyReference.cache

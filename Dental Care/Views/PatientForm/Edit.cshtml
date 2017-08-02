@@ -1,0 +1,96 @@
+﻿@model Dental_Care.Models.PatientForm
+
+@using Dental_Care.Models
+
+@{
+    ViewBag.Title = "Modification";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h1 class="h2">@ViewBag.Title</h1>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Fiche Patient</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Intro Section -->
+<!-- Patient Form Section -->
+<section class="appointment-block">
+    <div class="row ptb-100 booking-section">
+        <div class="col-md-6 col-md-offset-3">
+            @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+        </div>
+        <div class="col-md-pull-3 right-block h-all bg-color">
+            <div class="appointment light-color">
+                <h2>Fiche Patient</h2>
+                <form action="@Url.Action("Edit", "PatientForm")" method="post" enctype="multipart/form-data">
+                    <div class="form-field-wrapper">
+                        <label>@Html.DisplayNameFor(model => model.Name)</label>
+                        <input type="text" name="@Html.NameFor(model => model.Name)" value="@Model.Name" id="name" class="input-sm form-full">
+                    </div>
+                    <div class="form-field-wrapper">
+                        <span class="fa fa-caret-down icon-arrow"></span>
+                        <label for="gender">@Html.DisplayNameFor(model => model.Sexe)</label>
+                        <select name="@Html.NameFor(model => model.Sexe)" id="gender" class="input-sm form-full btm_input">
+                            <option value="M" @(Model.Sexe == "M" ? "selected" : "")>Male</option>
+                            <option value="F" @(Model.Sexe == "F" ? "selected" : "")>Femelle</option>
+                        </select>
+                    </div>
+                    <div class="form-field-wrapper">
+                        <label>@Html.DisplayNameFor(model => model.Age)</label>
+                        <input type="number" name="@Html.NameFor(model => model.Age)" value="@Model.Age" id="age" class="input-sm form-full">
+                    </div>
+                    <div class="form-field-wrapper">
+                        <label>@Html.DisplayNameFor(model => model.Tel)</label>
+                        <input type="text" name="@Html.NameFor(model => model.Tel)" value="@Model.Tel" id=" tel" class="input-sm form-full">
+                    </div>
+                    <div class="form-field-wrapper form-full panel panel-primary bg-color timing">
+                        <div class="panel-heading">@Html.DisplayNameFor(model => model.DentsId)</div>
+                        <div class="panel-body">
+                            <div class="form-field-wrapper form-full">
+                                <label>@Html.DisplayNameFor(model => model.Dents.Image) Actuelle</label>
+                                @{
+                                    var base64 = Convert.ToBase64String(Model.Dents.Image);
+                                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                }
+                                <img src='@imgSrc' style="max-width:250px; max-height:250px;" />
+                                <label>Nouvelle Image (JPG, PNG ou GIF)</label>
+                                <div style="position:relative;">
+                                    <a class='btn btn-primary' href='javascript:;'>
+                                        Parcourir...
+                                        <input type="file" name="ImageUpload" accept="image/*" class="btn" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' size="40" onchange='$("#upload-file-info").html($(this).val());'>
+                                    </a>
+                                    &nbsp;
+                                    <span class='label label-info' id="upload-file-info"></span>
+                                </div>
+                            </div>
+                            <div class="form-field-wrapper form-full">
+                                <label>@Html.DisplayNameFor(model => model.Dents.Note)</label>
+                                <textarea name="@Html.NameFor(model => model.Dents.Note)" class="input-sm form-full height-100">@Model.Dents.Note</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-field-wrapper">
+                        <span class="fa fa-caret-down icon-arrow"></span>
+                        <label for="username" title="(uniquement les utilisateurs ayant au moin un rendez-vous)">@Html.DisplayNameFor(model => model.UserId)</label>
+                        <select name="@Html.NameFor(model => model.UserId)" id="username" class="input-sm form-full btm_input">
+                            @foreach (User user in ViewBag.Users)
+                            {
+                                if (user.Rdvs.Count > 0)
+                                {
+                                    <option value="@user.Id" @(Model.UserId == user.Id ? "selected" : "")>@user.Username</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-field-wrapper mt-40">
+                        <button id="form-submit" type="submit" class="btn btn-md btn-white-line input-sm form-full">Modifier</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

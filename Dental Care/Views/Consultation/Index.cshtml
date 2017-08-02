@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Dental_Care.Models.Consultation>
+
+@{
+    ViewBag.Title = "Liste";
+    ViewBag.LongTitle = "Liste des Consultations";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h1 class="h2">@ViewBag.Title</h1>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Consultation</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+<!-- Intro Section -->
+
+<div class="ptb ptb-100" id="Pricing">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+                <table class="blue-table table-striped apply-datatable">
+                    <thead>
+                        <tr>
+                            <th colspan="8">
+                                @ViewBag.LongTitle
+                            </th>
+                        </tr>
+                        <tr>
+                            <th> # </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Ref)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Date)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Contenu)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PatientFormId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Ordonances.First().Ref)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Factures.First().Ref)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int i = 0;}
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <td>
+                                    @i
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Ref)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Contenu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PatientForm.Name)
+                                </td>
+                                <td>
+                                    @if (item.Ordonances.Count == 0)
+                                    {
+                                        <span>-</span>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Details", "Ordonance", new { id = item.Ordonances.First().Id })">@item.Ordonances.First().Ref</a>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.Factures.Count == 0)
+                                    {
+                                        <span>-</span>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Details", "Facture", new { id = item.Factures.First().Id })">@item.Factures.First().Ref</a>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.Ordonances.Count == 0)
+                                    {
+                                        <a href="@Url.Action("Create", "Ordonance", new { consultationId = item.Id })" title="Créer une ordonance"> <i class="fa fa-clipboard button alterar"></i> </a>
+                                    }
+                                    else if (item.Factures.Count == 0)
+                                    {
+                                        <a href="@Url.Action("Create", "Facture", new { consultationId = item.Id })" title="Créer une facture"> <i class="fa fa-credit-card button alterar"></i> </a>
+                                    }
+                                    <a href="@Url.Action("Edit", new { id = item.Id })" title="Modifier"> <i class="fa fa-pencil button alterar"></i> </a>
+                                    <a href="@Url.Action("Details", new { id = item.Id })" title="Détails"> <i class="fa fa-list-ul button alterar"></i> </a>
+                                    <a href="@Url.Action("Delete", new { id = item.Id })" title="Supprimer"> <i class="fa fa-trash button excluir"></i> </a>
+                                </td>
+                            </tr>
+                        }
+                        @if (i == 0)
+                        {
+                            <tr>
+                                <td colspan="7">@i Consultations.</td>
+                                <td></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

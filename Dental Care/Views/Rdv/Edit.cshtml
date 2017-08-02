@@ -1,0 +1,75 @@
+﻿@model Dental_Care.Models.Rdv
+
+@{
+    ViewBag.Title = "Modification";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h1 class="h2">@ViewBag.Title</h1>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Rendez-vous</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Intro Section -->
+<!-- Appointment Section -->
+<section class="appointment-section pt-80">
+    <div class="booking-section">
+        <div class="container">
+            <div class="col-sm-6 col-sm-offset-3 text-center mb-30">
+                <h2>Modifier un rendez-vous</h2>
+                <p class="lead">Modifiez vos rendez-vous en toute simplicité.</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-md-6 col-md-offset-3">
+                        @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+                    </div>
+                    <div class="left-block"> <img src="~/images/rdv.png" alt="" /> </div>
+                    <div class="right-block ">
+                        <div class="appointment">
+                            <form action="@Url.Action("Edit", "Rdv")" method="post">
+                                <div class="form-field-wrapper">
+                                    <label for="name">@Html.DisplayNameFor(model => model.Name)</label>
+                                    <input type="text" id="name" name="@Html.NameFor(model => model.Name)" value="@Model.Name" class="input-sm form-full">
+                                </div>
+                                <div class="form-field-wrapper">
+                                    <label for="gender">@Html.DisplayNameFor(model => model.Sexe)</label>
+                                    <select id="gender" name="@Html.NameFor(model => model.Sexe)" class="input-sm form-full btm_input">
+                                        <option value="">Séléctionnez votre sexe</option>
+                                        <option value="M" @(Model.Sexe == "M" ? "selected" : "")>Male</option>
+                                        <option value="F" @(Model.Sexe == "F" ? "selected" : "")>Femelle</option>
+                                    </select>
+                                </div>
+                                <div class="form-field-wrapper">
+                                    <label for="tel">@Html.DisplayNameFor(model => model.Tel)</label>
+                                    <input type="text" id="tel" name="@Html.NameFor(model => model.Tel)" value="@Model.Tel" class="input-sm form-full">
+                                </div>
+                                <div class="form-field-wrapper">
+                                    <label for="email">@Html.DisplayNameFor(model => model.Email)</label>
+                                    <input type="text" id="email" name="@Html.NameFor(model => model.Email)" value="@Model.Email" class="input-sm form-full">
+                                </div>
+                                <div class="form-field-wrapper form-full">
+                                    <label>@Html.DisplayNameFor(model => model.Message)</label>
+                                    <textarea name="@Html.NameFor(model => model.Message)" class="input-sm form-full height-100">@Model.Message</textarea>
+                                </div>
+                                <div class="form-field-wrapper">
+                                    <label for="date">@Html.DisplayNameFor(model => model.Date)</label>
+                                    <input type="text" name="@Html.NameFor(model => model.Date)" value="@Html.DisplayFor(model => model.Date)" class="input-sm form-full datepicker" id="date">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </div>
+                                <div class="form-field-wrapper mt-40">
+                                    <button id="check-fields" type="submit" class="btn btn-md btn-color-line input-sm form-full">Modifier</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

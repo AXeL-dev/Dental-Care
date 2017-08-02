@@ -1,0 +1,103 @@
+﻿
+@model Dental_Care.Models.User
+
+@using Dental_Care.Helpers
+
+@{
+    ViewBag.Title = "Modification";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h2 class="h2">@ViewBag.Title</h2>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Utilisateur</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Intro Section -->
+<!-- Register Section -->
+<div id="Pricing" class="ptb ptb-sm-80 page-signin">
+    <div class="container">
+        <div class="row">
+            <div class="main-body">
+                <div class="body-inner">
+                    @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+                    <form class="card bg-white" action="@Url.Action("Edit", "User")" method="post">
+                        <div class="card-content">
+                            <section class="logo text-center">
+                                <h2>@ViewBag.Title</h2>
+                            </section>
+                            <div class="form-horizontal ng-pristine ng-valid">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <div class="ui-input-group">
+                                            <input type="text" name="@Html.NameFor(model => model.Username)" value="@Model.Username" required class="form-control form-text-pwd-input">
+                                            <span class="input-bar"></span>
+                                            <label>Nom d'utilisateur</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="ui-input-group">
+                                            <input type="text" name="@Html.NameFor(model => model.Email)" id="email" value="@Model.Email" required class="form-control form-text-pwd-input">
+                                            <span class="input-bar"></span>
+                                            <label>Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="ui-input-group">
+                                            <input type="password" name="@Html.NameFor(model => model.Pwd)" id="pwd" required class="form-control form-text-pwd-input">
+                                            <span class="input-bar"></span>
+                                            <label>Mot de passe </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="ui-input-group">
+                                            <input type="password" name="confirm_@Html.NameFor(model => model.Pwd)" id="pwd_confirm" required class="form-control form-text-pwd-input">
+                                            <span class="input-bar"></span>
+                                            <label>Confirmation du mot de passe </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="ui-input-group">
+                                            <input type="text" name="@Html.NameFor(model => model.Tel)" id="tel" value="@Model.Tel" class="form-control form-text-pwd-input">
+                                            <span class="input-bar"></span>
+                                            <label>Téléphone</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="ui-input-group">
+                                            <input type="text" name="@Html.NameFor(model => model.Address)" id="adress" value="@Model.Address" class="form-control form-text-pwd-input">
+                                            <span class="input-bar"></span>
+                                            <label>Adresse</label>
+                                        </div>
+                                    </div>
+                                    <div class="divider"></div>
+                                    @if (UserHelper.isAdmin())
+                                    {
+                                        <div class="form-group checkbox-field">
+                                            <label for="@Html.NameFor(model => model.isAdmin)" class="text-small">
+                                                @Html.CheckBoxFor(model => model.isAdmin)
+                                                <span class="custom-check"></span> @Html.DisplayNameFor(model => model.isAdmin)
+                                            </label>
+                                        </div>
+                                        <div class="form-group checkbox-field">
+                                            <label for="@Html.NameFor(model => model.isDentist)" class="text-small">
+                                                @Html.CheckBoxFor(model => model.isDentist)
+                                                <span class="custom-check"></span> @Html.DisplayNameFor(model => model.isDentist)
+                                            </label>
+                                        </div>
+                                    }
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="card-action no-border text-right"> <a href="@Url.Action("Profil", "User", new { id = Model.Id })">Annuler</a> <input type="submit" id="check-fields" value="Modifier" class="color-primary"> </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Register Section -->

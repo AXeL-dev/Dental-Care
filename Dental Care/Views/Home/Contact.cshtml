@@ -1,0 +1,86 @@
+﻿
+@model Dental_Care.Models.Contact
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h2 class="h2">Nous Contacter</h2>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+<!-- End Intro Section -->
+<!-- Contact Section -->
+<section class="ptb ptb-sm-80">
+    <div class="col-md-6 col-md-offset-3">
+        @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h2>Restez en contact avec nous</h2>
+                <p class="lead">Vous avez une question ? Vous souhaitez obtenir des informations ? <br />Vous avez la possibilité de nous contacter par TELEPHONE, VISITE, E-MAIL.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 contact pb-60 pt-30">
+                <div class="row text-center">
+                    <div class="col-sm-4 pb-xs-30"> <i class="fa fa-phone icon-circle pos-s"></i> <a href="#" class="mt-15 i-block">+212 (5) 11 22 33 44</a> </div>
+                    <div class="col-sm-4 pb-xs-30">
+                        <i class="fa fa-map-marker icon-circle pos-s"></i>
+                        <p class="mt-15">
+                            5 lot la colline 2, sidi maarouf, <br />
+                            casablanca, maroc.
+                        </p>
+                    </div>
+                    <div class="col-sm-4 pb-xs-30"> <i class="fa fa-envelope icon-circle pos-s"></i> <a href="mailto:dentalcare@support.com" class="mt-15 i-block">dentalcare@support.com</a> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Map Section -->
+    <div class="map">
+        <div id="map"><img src="~/images/map.png" alt="Map"></div>
+    </div>
+    <!-- Map Section -->
+    <div class="container contact-form pt-80 mt-up">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4>Entrer en contact avec nous</h4>
+                <p> N'hésitez pas a vous exprimer librement.</p>
+                <!-- Contact FORM -->
+                <form class="contact-form mt-45" id="contact" action="@Url.Action("Contact")" method="post">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-field">
+                                <input class="input-sm form-full" id="name" type="text" name="@Html.NameFor(model => model.Name)" value="@Request.Form["Name"]" placeholder="@Html.DisplayNameFor(model => model.Name)">
+                            </div>
+                            <div class="form-field">
+                                <input class="input-sm form-full" id="email" type="text" name="@Html.NameFor(model => model.Email)" value="@Request.Form["Email"]" placeholder="@Html.DisplayNameFor(model => model.Email)">
+                            </div>
+                            <div class="form-field">
+                                <input class="input-sm form-full" id="sub" type="text" name="@Html.NameFor(model => model.Subject)" value="@Request.Form["Subject"]" placeholder="@Html.DisplayNameFor(model => model.Subject)">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-field">
+                                <textarea class="form-full" id="message" rows="7" name="@Html.NameFor(model => model.Message)" placeholder="@Html.DisplayNameFor(model => model.Message)">@Request.Form["Message"]</textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mt-30">
+                            <button class="btn btn-md btn-color-line" type="submit" id="submit">Envoyer Message</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- END Contact FORM -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Section -->
+

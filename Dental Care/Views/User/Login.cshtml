@@ -1,0 +1,59 @@
+﻿
+@model Dental_Care.Models.User
+
+@{
+    ViewBag.Title = "Connexion";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h2 class="h2">@ViewBag.Title</h2>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Intro Section -->
+<!-- Login Section -->
+<div id="Pricing" class="ptb ptb-sm-80 page-signin">
+    <div class="container">
+        <div class="row">
+            <div class="main-body">
+                <div class="body-inner">
+                    @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+                    <form class="card bg-white" action="@Url.Action("Login", "User")" method="post">
+                        <div class="card-content">
+                            <section class="logo text-center">
+                                <h2>@ViewBag.Title</h2>
+                            </section>
+                            <div class="form-horizontal ng-pristine ng-valid">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <div class="ui-input-group">
+                                            <input type="text" name="@Html.NameFor(model => model.Email)" id="email" value="@Request.Form["email"]" required class="form-control form-text-pwd-input">
+                                            <span class="input-bar"></span>
+                                            <label>Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="ui-input-group">
+                                            <input type="password" name="@Html.NameFor(model => model.Pwd)" required class="form-control form-text-pwd-input">
+                                            <span class="input-bar"></span>
+                                            <label>Mot de passe</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="card-action no-border text-right"> <input type="submit" id="check-fields" value="Se connecter" class="color-primary"> </div>
+                    </form>
+                    <div class="additional-info"> <a href="@Url.Action("Register", "User")">S'inscrire</a> <span class="divider-h"></span> <a href="#">Mot de passe oublié?</a> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Login Section -->
+

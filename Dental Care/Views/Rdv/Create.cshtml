@@ -1,0 +1,103 @@
+﻿
+@model Dental_Care.Models.Rdv
+
+@{
+    ViewBag.Title = "Rendez-vous";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h1 class="h2">@ViewBag.Title</h1>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Services</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Intro Section -->
+<!-- Appointment Section -->
+<section class="appointment-section pt-80">
+    <div class="booking-section">
+        <div class="container">
+            <div class="col-sm-6 col-sm-offset-3 text-center mb-30">
+                <h2>Prendre un rendez-vous</h2>
+                <p class="lead">Prenez vos rendez-vous en toute simplicité.</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-md-6 col-md-offset-3">
+                        @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+                    </div>
+                    <div class="left-block"> <img src="~/images/rdv.png" alt="" /> </div>
+                    <div class="right-block ">
+                        <div class="appointment">
+                            <form action="@Url.Action("Create", "Rdv")" method="post">
+                                <div class="form-field-wrapper">
+                                    <label for="name">@Html.DisplayNameFor(model => model.Name)</label>
+                                    <input type="text" id="name" name="@Html.NameFor(model => model.Name)" value="@Request.Form["name"]" class="input-sm form-full">
+                                </div>
+                                <div class="form-field-wrapper">
+                                    <label for="gender">@Html.DisplayNameFor(model => model.Sexe)</label>
+                                    <select id="gender" name="@Html.NameFor(model => model.Sexe)" class="input-sm form-full btm_input">
+                                        <option value="">Séléctionnez votre sexe</option>
+                                        <option value="M" @(Request.Form["sexe"] == "M" ? "selected" : "")>Male</option>
+                                        <option value="F" @(Request.Form["sexe"] == "F" ? "selected" : "")>Femelle</option>
+                                    </select>
+                                </div>
+                                <div class="form-field-wrapper">
+                                    <label for="tel">@Html.DisplayNameFor(model => model.Tel)</label>
+                                    <input type="text" id="tel" name="@Html.NameFor(model => model.Tel)" value="@Request.Form["tel"]" class="input-sm form-full">
+                                </div>
+                                <div class="form-field-wrapper">
+                                    <label for="email">@Html.DisplayNameFor(model => model.Email)</label>
+                                    <input type="text" id="email" name="@Html.NameFor(model => model.Email)" value="@Request.Form["email"]" class="input-sm form-full">
+                                </div>
+                                <div class="form-field-wrapper form-full">
+                                    <label>@Html.DisplayNameFor(model => model.Message)</label>
+                                    <textarea name="@Html.NameFor(model => model.Message)" class="input-sm form-full height-100">@Request.Form["message"]</textarea>
+                                </div>
+                                <div class="form-field-wrapper">
+                                    <label for="date">@Html.DisplayNameFor(model => model.Date)</label>
+                                    <input type="text" name="@Html.NameFor(model => model.Date)" value="@Request.Form["date"]" class="input-sm form-full datepicker" id="date">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </div>
+                                <div class="form-field-wrapper mt-40">
+                                    <button id="check-fields" type="submit" class="btn btn-md btn-color-line input-sm form-full">Valider</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section -->
+<section class="overlay-bg-color light-color ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 mt-xs-30">
+                <h4>Service de garde</h4>
+                <p>Un service de garde est organisé les week-ends et jours fériés.</p>
+                <a class="btn btn-md btn-white-line  mt-15">Lire la suite</a>
+            </div>
+            <div class="col-sm-4 mt-xs-30">
+                <h4>Cas d'urgence</h4>
+                <p>En cas de traumatisme dentaire consécutif à une chute ou à un choc, prenez immédiatement contact avec nous.</p>
+                <a class="btn btn-md btn-white-line  mt-15">Lire la suite</a>
+            </div>
+            <div class="col-sm-4 mt-xs-30">
+                <h4>Horaires d'ouverture</h4>
+                <ul class="timing">
+                    <li> <span class="fl">Lundi - Vendredi</span> <span class="fr">8.00 - 17.00</span> </li>
+                    <li><span>Samedi</span> <span class="fr">9.30 - 17.30</span></li>
+                    <li><span>Dimanche</span> <span class="fr">9.30 - 15.00</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End  Section --> 
+

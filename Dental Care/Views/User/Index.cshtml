@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Dental_Care.Models.User>
+
+@{
+    ViewBag.Title = "Liste";
+    ViewBag.LongTitle = "Liste des Utilisateurs";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h1 class="h2">@ViewBag.Title</h1>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Utilisateur</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+<!-- Intro Section -->
+
+<div class="ptb ptb-100" id="Pricing">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+                <table class="blue-table table-striped apply-datatable">
+                    <thead>
+                        <tr>
+                            <th colspan="7">
+                                @ViewBag.LongTitle
+                            </th>
+                            <th class="th-button">
+                                <a href="@Url.Action("Register")" title="Nouvel utilisateur"> <i class="fa fa-user-plus button alterar"></i> </a>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th> # </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Username)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tel)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Address)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.isAdmin)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.isDentist)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int i = 0;}
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <td>
+                                    @i
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Username)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tel)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td class="checkbox-field">
+                                    @Html.DisplayFor(modelItem => item.isAdmin)
+                                    <span class="custom-check"></span>
+                                </td>
+                                <td class="checkbox-field">
+                                    @Html.DisplayFor(modelItem => item.isDentist)
+                                    <span class="custom-check"></span>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Edit", new { id = item.Id })" title="Modifier"> <i class="fa fa-pencil button alterar"></i> </a>
+                                    <a href="@Url.Action("Profil", new { id = item.Id })" title="Profil"> <i class="fa fa-user button alterar"></i> </a>
+                                    <a href="@Url.Action("Delete", new { id = item.Id })" title="Supprimer"> <i class="fa fa-trash button excluir"></i> </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

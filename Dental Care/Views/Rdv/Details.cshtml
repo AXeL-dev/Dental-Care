@@ -1,0 +1,56 @@
+﻿@model Dental_Care.Models.Rdv
+
+@using Dental_Care.Helpers
+
+@{
+    ViewBag.Title = "Détails";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h1 class="h2">@ViewBag.Title</h1>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Rendez-vous</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+<!-- Intro Section -->
+
+<section class="pt-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+                <div class="box-resume">
+                    <div class="center-top"> <i class="fa fa-calendar fa-5x"></i> </div>
+                    <ul class="user-info">
+                        <li><strong>@Html.DisplayNameFor(model => model.Ref)</strong> @Model.Ref</li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Name)</strong> @Model.Name</li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Sexe)</strong> @(Model.Sexe == "M" ? "Male" : "Femelle")</li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Tel)</strong> @Model.Tel</li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Email)</strong> <a href="mailto:@Model.Email" title="" class="a-email">@Model.Email</a></li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Message)</strong> @Model.Message</li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Date)</strong> @Html.DisplayFor(model => model.Date)</li>
+                    </ul>
+                    <div class="center-bottom">
+                        @if (UserHelper.isDentist())
+                        {
+                            <a href="@Url.Action("Index", "PatientForm", new { userId = Model.UserId })" class="btn btn-md btn-color-line ">Fiches patient</a>
+                            if (Model.State == RdvState.Default)
+                            {
+                                <span>&nbsp;&nbsp;&nbsp;</span>
+                                <a href="@Url.Action("Confirm", new { id = Model.Id })" class="btn btn-md btn-color-line ">Confirmer</a>
+                            }
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-md btn-color-line ">Modifier</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section -->

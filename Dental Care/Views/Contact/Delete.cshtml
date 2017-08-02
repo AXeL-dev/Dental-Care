@@ -1,0 +1,42 @@
+﻿@model Dental_Care.Models.Contact
+
+@{
+    ViewBag.Title = "Suppression";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h1 class="h2">@ViewBag.Title</h1>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Contact</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+<!-- Intro Section -->
+
+<section class="pt-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+                <div class="box-resume">
+                    <div class="center-top"> <i class="fa fa-envelope fa-5x"></i> </div>
+                    <p class="lead c">Êtes-vous sûr de vouloir supprimer ce contact ?</p>
+                    <br>
+                    <ul class="user-info">
+                        <li><strong>@Html.DisplayNameFor(model => model.Name)</strong> @Model.Name</li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Email)</strong> <a href="mailto:@Model.Email" title="" class="a-email">@Model.Email</a></li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Subject)</strong> @Model.Subject</li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Message)</strong> @Model.Message</li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Date)</strong> @Html.DisplayFor(model => model.Date)</li>
+                    </ul>
+                    <form class="center-bottom" action="@Url.Action("Delete", "Contact")" method="post">
+                        <a href="@Url.Action("Index", "Contact")" class="btn btn-md btn-color-line ">Annuler</a> &nbsp;&nbsp;&nbsp; <input type="submit" value="Supprimer" class="btn btn-md btn-color-line">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section -->

@@ -1,0 +1,42 @@
+﻿@model Dental_Care.Models.Facture
+
+@using Dental_Care.Helpers
+
+@{
+    ViewBag.Title = "Détails";
+}
+
+<!-- Intro Section -->
+<section class="inner-intro bg-img overlay-bg-color light-color parallax parallax-background">
+    <div class="container">
+        <div class="row title">
+            <h1 class="h2">@ViewBag.Title</h1>
+            <div class="page-breadcrumb"> <a href="@Url.Action("Index", "Home")">Acceuil</a>/<a>Facture</a>/<span>@ViewBag.Title</span> </div>
+        </div>
+    </div>
+</section>
+<!-- Intro Section -->
+
+<section class="pt-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                @Html.Partial("~/Views/Shared/_ErrorSuccessMsg.cshtml")
+                <div class="box-resume">
+                    <div class="center-top"> <i class="fa fa-credit-card fa-5x"></i> </div>
+                    <ul class="user-info">
+                        <li><strong>@Html.DisplayNameFor(model => model.Ref)</strong> @Model.Ref</li>
+                        <li>
+                            <strong>@Html.DisplayNameFor(model => model.Consultation.Ref)</strong>
+                            <a href="@Url.Action("Details", "Consultation", new { id = Model.ConsultationId })">@Model.Consultation.Ref</a>
+                        </li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Date)</strong> @Html.DisplayFor(model => model.Date)</li>
+                        <li><strong>@Html.DisplayNameFor(model => model.Montant)</strong> @Html.DisplayFor(model => model.Montant)</li>
+                    </ul>
+                    <div class="center-bottom"> <a href="@(UserHelper.isDentist() ? Url.Action("Index") : Url.Action("Profil", "User", new { id = Model.Consultation.PatientForm.UserId }))" class="btn btn-md btn-color-line ">Retour</a> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section -->

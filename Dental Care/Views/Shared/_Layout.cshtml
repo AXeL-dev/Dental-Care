@@ -1,0 +1,211 @@
+﻿@using Dental_Care.Helpers
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Dental Care</title>
+    <!-- Favicone Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/favicon.ico">
+    <!-- CSS -->
+    <link href="~/css/raleway-font.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/dentist.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/settings.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/layers.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/theme-color/default.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/fullcalendar/fullcalendar.print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body>
+    <!-- Site Wraper -->
+    <div class="wrapper">
+        <!-- HEADER -->
+        <header id="header" class="header header-2">
+            <div id="top-bar" class="top-bar-section top-bar-bg-color">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Top Contact -->
+                            <div class="top-contact link-hover-black hidden-xs">
+                                <a href="#"> <i class="fa fa-phone"></i>+212 (5) 11 22 33 44</a>
+                                <a href="mailto:dentalcare@support.com"> <i class="fa fa-envelope"></i>dentalcare@support.com</a>
+                            </div>
+                            <!-- Top Social Icon -->
+                            <div class="top-social-icon icons-hover-black">
+                                <ul>
+                                    @if (Session["Id"] != null && Session["Username"] != null)
+                                    {
+                                        <li> Bienvenue, <b>@Session["Username"]</b>&nbsp; | &nbsp;<a href="@Url.Action("Profil", "User", new { id = UserHelper.getId() })"> Mon Profil </a>&nbsp; | &nbsp;<a href="@Url.Action("Logout", "User")"> <i class="fa fa-sign-out"></i> Déconnexion </a> </li>
+                                    }
+                                    else
+                                    {
+                                        <li> <a href="@Url.Action("Login", "User")"> <i class="fa fa-power-off"></i> Se connecter </a> / <a href="@Url.Action("Register", "User")"> S'inscrire </a> </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container secondary-header">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="logo"> <a href="@Url.Action("Index", "Home")"><img src="~/images/logo.png" alt="Dental Care"></a> </div>
+                        <button class="menu visible-xs"></button>
+                    </div>
+                    <div class="col-sm-7 hidden-xs">
+                        <div class="call-us">
+                            <ul>
+                                <li><i class="fa fa-mobile fa-4x"></i> <span class="call-box"> APPEL <span></span> GRATUIT</span> </li>
+                                <li> <a href="#">88 00 11 22 33</a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="primary-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <nav class="navigation">
+                                <ul>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Home")">Acceuil</a> <i class="visible-xs"></i>
+                                    </li>
+                                    <li>
+                                        <a href="#">Services</a> <i class="visible-xs"></i>
+                                        <ul class="sub-nav">
+                                            <li> <a href="@Url.Action("Create", "Rdv")">Rendez-vous</a> </li>
+                                            <li> <a href="#">Urgences</a> </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="@Url.Action("About", "Home")">À propos de nous</a></li>
+                                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                                    @if (UserHelper.isAdmin() || UserHelper.isDentist())
+                                    {
+                                        <li>
+                                            <a href="#">@(UserHelper.isAdmin() ? "Espace administratif" : "Espace dentiste")</a>
+                                            <ul class="sub-nav">
+                                                <li><a href="@Url.Action("Index", "Calendar")">Calendrier</a></li>
+                                                @if(UserHelper.isAdmin())
+                                                {
+                                                    <li> <a href="@Url.Action("Index", "User")">Liste Utilisateurs</a> </li>
+                                                }
+                                                <li> <a href="@Url.Action("Index", "Rdv")">Liste Rendez-vous</a> </li>
+                                                <li> <a href="@Url.Action("Index", "PatientForm")">Fiches Patients</a> </li>
+                                                <li> <a href="@Url.Action("Index", "Consultation")">Liste Consultations</a> </li>
+                                                <li> <a href="@Url.Action("Index", "Ordonance")">Liste Ordonances</a> </li>
+                                                <li> <a href="@Url.Action("Index", "Facture")">Liste Factures</a> </li>
+                                                <li> <a href="@Url.Action("Index", "Contact")">Liste Contacts</a> </li>
+                                            </ul>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
+                        </div>
+                        @if(!UserHelper.isDentist())
+                        {
+                            <div class="col-sm-3"> <a href="@Url.Action("Create", "Rdv")" class="btn btn-md btn-white-line mt-10 appointment-button"> Prendre un rendez-vous </a> </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- END HEADER -->
+
+        <!-- RENDER BODY -->
+        @RenderBody()
+
+        <!-- FOOTER -->
+        <footer class="footer pt-80">
+            <div class="container">
+
+                <!--Footer Info -->
+                <div class="row footer-info mb-60">
+                    <div class="col-md-4 col-sm-6 col-xs-12 mb-sm-30">
+                        <h5>Contact</h5>
+                        <address>
+                            <i class="fa fa-map-marker fa-icons"></i> 5 lot la colline 2, sidi maarouf, casablanca, maroc.
+                        </address>
+                        <ul class="link-small">
+                            <li><a href="mailto:dentalcare@support.com"><i class="fa fa-envelope fa-icons"></i>dentalcare@support.com</a></li>
+                            <li><a><i class="fa fa-phone fa-icons"></i>+212 (5) 11 22 33 44</a></li>
+                        </ul>
+                        <div class="icons-hover-black"> <a href="#"> <i class="fa fa-facebook"></i> </a> <a href="#"> <i class="fa fa-twitter"></i> </a> <a href="#"> <i class="fa fa-youtube"></i> </a> <a href="#"> <i class="fa fa-dribbble"></i> </a> <a href="#"> <i class="fa fa-linkedin"></i> </a> </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 mb-sm-30">
+                        <h5>Liens</h5>
+                        <ul class="link blog-link">
+                            <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Acceuil</a></li>
+                            <li><a href="#"><i class="fa fa-angle-double-right"></i> Services</a></li>
+                            <li><a href="@Url.Action("About", "Home")"><i class="fa fa-angle-double-right"></i> À Propos</a></li>
+                            <li><a href="@Url.Action("Contact", "Home")"><i class="fa fa-angle-double-right"></i> Contact</a></li>
+                            <li><a href="#"><i class="fa fa-angle-double-right"></i> Politique de confidentialité</a></li>
+                            <li><a href="#"><i class="fa fa-angle-double-right"></i> Termes et conditions</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="newsletter">
+                            <h5>Horaires</h5>
+                            <div class="opening">
+                                <p> Lundi - Vendredi : <span>8:30 AM à 17:00 PM</span> </p>
+                                <p> Samedi - Dimanche : <span>8:30 AM à 15:00 PM</span> </p>
+                            </div>
+                            <h5>Inscription à la newsletter</h5>
+                            <p>Abonnez-vous à notre Newsletter pour obtenir toutes nos nouvelles importantes et offres irrésistibles :</p>
+                            <form>
+                                <input type="email" class="newsletter-input input-md newsletter-input mb-0" placeholder="Enter Your Email">
+                                <button class="newsletter-btn btn btn-xs btn-color" type="button" value=""><i class="fa fa-angle-right mr-0"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Footer Info -->
+            </div>
+
+            <!-- Copyright Bar -->
+            <div class="copyright">
+                <div class="container">
+                    <p class=""> © 2016 <a><b>Dental Care</b></a>. Tous les droits sont réservés. </p>
+                </div>
+            </div>
+            <!-- End Copyright Bar -->
+
+        </footer>
+        <!-- END FOOTER -->
+        <!-- Scroll Top -->
+        <a class="scroll-top"> <i class="fa fa-angle-double-up"></i> </a>
+        <!-- End Scroll Top -->
+
+    </div>
+    <!-- Site Wraper End -->
+
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <!-- jQuery v2.1.4 --><!--script src="~/Scripts/jquery.min.js"></script-->
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- fullcalendar -->
+    <script src="~/Scripts/fullcalendar/moment.min.js"></script>
+    <script src="~/Scripts/fullcalendar/fullcalendar.min.js"></script>
+    <script src="~/Scripts/fullcalendar/lang-all.js"></script>
+    <!-- revolution Js -->
+    <script src="~/Scripts/revolution/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Scripts/revolution/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/Scripts/revolution/extensions/revolution.extension.slideanims.min.js"></script>
+    <script src="~/Scripts/revolution/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="~/Scripts/revolution/extensions/revolution.extension.navigation.min.js"></script>
+    <script src="~/Scripts/revolution/extensions/revolution.extension.parallax.min.js"></script>
+    <script src="~/Scripts/revolution/jquery.revolution.js"></script>
+    <!-- revolution Js -->
+    <script src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/validation.js"></script>
+</body>
+</html>
